@@ -1,0 +1,10 @@
+FROM php:7.4-cli
+
+RUN apt-get update \
+    && docker-php-ext-install pdo pdo_mysql pcntl
+
+RUN wget https://getcomposer.org/installer -O - -q | php -- --version=1.9.1 --install-dir=/bin --filename=composer --quiet
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+WORKDIR /var/www
